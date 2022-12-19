@@ -21,11 +21,39 @@ Building and running a container
 
 2. In the first line of the `Dockerfile`, specify the base image. In this case we would use `alpine:latest` as the base image which is a lightweight, latest version of Alpine Linux.
 
+```
+FROM alpine:latest
+```
+
 3. We would need to copy our bash script to the container using `COPY` command. The command: `COPY hello.sh ./` copies our bash script to the current directory of our container
+
+```
+FROM alpine:latest
+
+COPY hello.sh ./
+```
 
 4. In order to use this script, we would need to make the script executable by running the following command: `chmod +x hello.sh`. We can use the `RUN` command to do this. 
 
+```
+FROM alpine:latest
+
+COPY hello.sh ./
+
+RUN chmod +x hello.sh
+```
+
 5. Finally, we can use `CMD` command to specify the command to run when the container is running. `CMD ["sh", "hello.sh"]`, the `sh` executable is being run with the `hello.sh` script as the first parameter. This will run the `hello.sh` script using the `sh` shell.
+
+```
+FROM alpine:latest
+
+COPY hello.sh ./
+
+RUN chmod +x hello.sh
+
+CMD ["sh", "hello.sh"]
+```
 
 ## How to run the container
 
@@ -60,3 +88,12 @@ The will automatically sets the environment variable `HELLO` with the string "go
 Alternatively, 
 
 you can add the command `export HELLO=“good morning”` at the start of our bash script. 
+
+```
+#!/bin/bash
+
+# This script echoes the value of the HELLO environment variable to standard out.
+export HELLO=“good morning”
+
+echo "The value of the HELLO environment variable is: $HELLO"
+```
