@@ -68,10 +68,12 @@ The `.` indicates that the current working directory is the context of the build
 2. To run the container, we can run the following command:
 
 ```
-docker run hello  
+docker run --rm hello  
 ```
 
 This will automatically start a new container based on the `hello` image and the `hello.sh` script will be executed automatically. 
+
+The container will be removed when it exits because of the `--rm` flag.
 
 ## How to run the container so it prints out “good morning”
 
@@ -80,7 +82,7 @@ This will automatically start a new container based on the `hello` image and the
 We can do this by the following command: 
 
 ```
-docker run -e HELLO=“good morning” hello
+docker run --rm -e HELLO=“good morning” hello
 ```
 
 The will automatically sets the environment variable `HELLO` with the string "good morning"
